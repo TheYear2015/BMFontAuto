@@ -21,6 +21,10 @@ class BMFCFile:
 
     # 保存
     def write(self, file_path):
+        # 计算需要输出的图集的宽高
+        width = 2048
+        height = 2048
+
         # 文件头
         lines = ["# AngelCode Bitmap Font Generator configuration file",
                  "fileVersion=1", "", "# font settings"]
@@ -28,11 +32,13 @@ class BMFCFile:
         lines.append("")
 
         lines.append("# character alignment")
+        lines.append("spacingHoriz=1")
+        lines.append("spacingVert=1")
         lines.append("")
 
         lines.append("# output file")
-        lines.append("outWidth={}".format(self.setting.max_width))
-        lines.append("outHeight={}".format(self.setting.max_height))
+        lines.append("outWidth={}".format(width))
+        lines.append("outHeight={}".format(height))
         lines.append("outBitDepth={}".format(self.setting.out_bit_depth))
         lines.append("textureFormat={}".format(self.setting.texture_format))
         lines.append("textureCompression={}".format(

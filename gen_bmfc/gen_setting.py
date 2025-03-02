@@ -8,9 +8,6 @@ class GenSetting(object):
         self.imgs_dir = "./"
         # 输出的色深
         self.out_bit_depth = "32"
-        # 输出图片的最大尺寸
-        self.max_width = 2048
-        self.max_height = 2048
         # 输出文件的格式
         self.texture_format = "png"
         # 压缩等级

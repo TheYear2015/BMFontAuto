@@ -2,6 +2,7 @@
 # 生成 bmfc 文件
 
 import os
+from PIL import Image
 import gen_setting
 import bmfc_file
 
@@ -21,13 +22,16 @@ class GenBMFC(object):
     def __get_imgs_info_in_dir(self, imgs_dir):
         for root, dirs, files in os.walk(imgs_dir):
             for f in files:
-                code = self.__get_img_info(f)
-                self.chars.append((os.path.join(root, f), code))
+                f = os.path.join(root, f)
+                info = self.__get_img_info(f)
+                self.chars.append((f, info[0], info[1]))
 
     # 获得指定图片的图片信息，图片的大小，图片对应的 unicode。
     def __get_img_info(self, img_path):
         code = self.__convert_file_name_to_unicode(img_path)
-        return code
+        # 获得文件尺寸
+        img = Image.open(img_path)
+        return (code, img.size)
 
     # 输出到 bmfc 文件
     def __gen_bmfc(self, out_file_path):
